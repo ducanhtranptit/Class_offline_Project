@@ -83,5 +83,6 @@ function onListening() {
     var addr = server.address();
     var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
     debug("Listening on " + bind);
-    console.log("Server Running: http://localhost:" + port);
+    console.log('✌️ Express loaded');
+    console.log("#####🛡️ CLASS_OFFLINE PROJECT listening on port:", addr.port,"🛡️#####");
 }
