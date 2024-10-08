@@ -31,4 +31,4 @@ services:
         restart: on-failure
 
 volumes:
-    db_data: # Định nghĩa volume db_data ở đây
+    db_data:

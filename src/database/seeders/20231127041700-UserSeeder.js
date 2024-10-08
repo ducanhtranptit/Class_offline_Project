@@ -1,17 +1,7 @@
 "use strict";
-
-const model = require("../../models/index");
-const Type = model.Type;
-
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
 	async up(queryInterface, Sequelize) {
-		const typeAdmin = await Type.findOne({
-			where: {
-				name: "Admin",
-			},
-		});
-
 		await queryInterface.bulkInsert(
 			"Users",
 			[
