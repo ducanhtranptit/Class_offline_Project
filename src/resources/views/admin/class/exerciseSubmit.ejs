@@ -7,19 +7,23 @@
 </div>
 
 <div>
-	<form action="/admin/classes/exercise-submit/<%= exercise.id %>"
+	<form
+		action="/admin/classes/exercise-submit/<%= exercise.id %>"
 		method="POST"
-		autocomplete="off">
-		<img src="/assets/img/user2-160x160.jpg"
+		autocomplete="off"
+	>
+		<img
+			src="/assets/img/user2-160x160.jpg"
 			class="img-circle elevation-2"
 			alt="User Image"
-			width="30" />
-		<input type="text"
+			width="30"
+		/>
+		<input
+			type="text"
 			name="content"
-			placeholder="Nhập câu trả lời của bạn">
-		<input type="text"
-			name="attachment"
-			placeholder="Nhập link đính kèm">
+			placeholder="Nhập câu trả lời của bạn"
+		/>
+		<input type="text" name="attachment" placeholder="Nhập link đính kèm" />
 		<button type="submit">Gửi</button>
 	</form>
 </div>
@@ -27,14 +31,18 @@
 <% exerciseSubmits.forEach((exerciseSubmit) => { %>
 <div class="card mt-4">
 	<div>
-		<img src="/assets/img/user2-160x160.jpg"
+		<img
+			src="/assets/img/user2-160x160.jpg"
 			class="img-circle elevation-2"
 			alt="User Image"
-			width="30" />
-		<strong>Nguyễn Khải</strong>
+			width="30"
+		/>
+		<strong>Trần Đức Anh</strong>
 	</div>
 
 	<p><%= exerciseSubmit.content %></p>
-	<a href="<%= exerciseSubmit.attachment %>"><%= exerciseSubmit.attachment %></a>
+	<a href="<%= exerciseSubmit.attachment %>"
+		><%= exerciseSubmit.attachment %></a
+	>
 </div>
 <% }) %>

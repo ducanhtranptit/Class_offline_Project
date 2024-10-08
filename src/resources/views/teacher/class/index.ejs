@@ -24,7 +24,6 @@
         <th><input type="checkbox" id="checkboxAll"></th>
         <th style="width: 10px">#</th>
         <th>Tên</th>
-        <th>Sĩ số</th>
         <th>Ngày khai giảng</th>
         <th>Ngày bế giảng</th>
         <th>Lịch học</th>
@@ -36,7 +35,6 @@
         <th><input type="checkbox" class="checkboxItem" value="<%= classVal.id %>"></th>
         <td><%= index + 1 %></td>
         <td><a href="/teacher/classes/detail/<%= classVal.id %>"><%= classVal.name %></a></td>
-        <td><%= classVal.quantity %></td>
         <td><%= moment(classVal.startDate).format("MM/DD/YYYY") %></td>
         <td><%= moment(classVal.endDate).format("MM/DD/YYYY") %></td>
         <td><% scheduleClass.forEach((scheduleVal,i) => { %>

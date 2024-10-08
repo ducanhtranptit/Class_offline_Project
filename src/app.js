@@ -14,7 +14,6 @@ const cors = require("cors");
 
 // Khai báo Router
 const studentsRouter = require("./routes/student/index");
-const teachersRouter = require("./routes/teacher/index");
 const adminRouter = require("./routes/admin/index");
 const authRouter = require("./routes/auth/index");
 const connectRouter = require("./routes/connect/index");
@@ -103,7 +102,6 @@ app.use(LoginFirstTimeMiddleware);
 app.use(DeviceMiddleware);
 app.use("/connect", connectRouter);
 app.use("/admin", RoleMiddleware, adminRouter);
-app.use("/teacher", RoleMiddleware, teachersRouter);
 app.use("/", RoleMiddleware, studentsRouter);
 
 // catch 404 and forward to error handler

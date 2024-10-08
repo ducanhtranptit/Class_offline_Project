@@ -26,7 +26,6 @@
         <th>Học phí</th>
         <th>Giảng viên</th>
         <th>Học thử</th>
-        <th>Sĩ số</th>
         <th>Thời gian</th>
       </tr>
     </thead>
@@ -38,7 +37,6 @@
         <td><%= course.price.toLocaleString() %> đ</td>
         <td><%= course.User.name %></td>
         <td><%= course.tryLearn %> buổi</td>
-        <td><%= course.quantity %></td>
         <td><%= course.duration %> buổi </td>
       </tr>
       <% }) %>

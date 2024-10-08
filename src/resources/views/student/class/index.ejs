@@ -30,7 +30,6 @@
 			<tr>
 				<th style="width: 10px">#</th>
 				<th>Tên</th>
-				<th>Sĩ số</th>
 				<th>Ngày khai giảng</th>
 				<th>Ngày bế giảng</th>
 				<th>Lịch học</th>
@@ -41,7 +40,6 @@
 			<tr>
 				<td><%= index + 1 %></td>
 				<td><a href="/classes/detail/<%= classVal.id %>"><%= classVal.name %></a></td>
-				<td><%= classVal.quantity %></td>
 				<td><%= moment(classVal.startDate).format("MM/DD/YYYY") %></td>
 				<td><%= moment(classVal.endDate).format("MM/DD/YYYY") %></td>
 				<td><% scheduleClass.forEach((scheduleVal,i) => { %>

@@ -21,6 +21,8 @@ if (config.use_env_variable) {
     );
 }
 
+sequelize.options.logging = false;
+
 fs.readdirSync(__dirname)
     .filter((file) => {
         return (

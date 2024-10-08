@@ -16,322 +16,376 @@ const Type = model.Type;
 const moduleName = "Giảng viên";
 
 module.exports = {
-    index: async (req, res) => {
-        const title = "Danh sách giảng viên, trợ giảng";
-        const userName = req.user.name;
-        const filters = {};
+	index: async (req, res) => {
+		try {
+			const title = "Danh sách giảng viên, trợ giảng";
+			const userName = req.user.name;
+			const filters = {};
 
-        let { keyword, page, recordNumber } = req.query;
-        if (!recordNumber) {
-            recordNumber = 5;
-        }
+			let { keyword, page, recordNumber } = req.query;
+			if (!recordNumber) {
+				recordNumber = 5;
+			}
 
-        if (keyword) {
-            filters[Op.or] = [
-                {
-                    name: {
-                        [Op.like]: `%${keyword}%`,
-                    },
-                },
-                {
-                    email: {
-                        [Op.like]: `%${keyword}%`,
-                    },
-                },
-            ];
-        }
+			if (keyword) {
+				filters[Op.or] = [
+					{
+						name: {
+							[Op.like]: `%${keyword}%`,
+						},
+					},
+					{
+						email: {
+							[Op.like]: `%${keyword}%`,
+						},
+					},
+				];
+			}
 
-        // Lấy tổng số bản ghi
-        const totalCountObj = await User.findAndCountAll({
-            include: {
-                model: Type,
-                where: {
-                    name: {
-                        [Op.or]: ["Teacher", "TA"],
-                    },
-                },
-            },
-            where: filters,
-        });
-        // Lấy tổng số trang
-        const totalCount = totalCountObj.count;
-        const totalPage = Math.ceil(totalCount / recordNumber);
-        // Lấy số trang
-        if (!page || page < 1) {
-            page = 1;
-        }
-        if (page > totalPage && page > 1) {
-            page = totalPage;
-        }
+			const totalCountObj = await User.findAndCountAll({
+				include: {
+					model: Type,
+					where: {
+						name: {
+							[Op.or]: ["Teacher", "TA"],
+						},
+					},
+				},
+				where: filters,
+			});
 
-        const offset = (page - 1) * recordNumber;
-        const teachers = await User.findAll({
-            include: {
-                model: Type,
-                where: {
-                    name: {
-                        [Op.or]: ["Teacher", "TA"],
-                    },
-                },
-            },
-            where: filters,
-            attributes: [
-                "id",
-                "name",
-                "email",
-                "phone",
-                "typeId",
-                "address",
-                "createdAt",
-            ],
-            limit: +recordNumber,
-            offset: offset,
-        });
+			const totalCount = totalCountObj.count;
+			const totalPage = Math.ceil(totalCount / recordNumber);
 
-        const permissionUser = await permissionUtils.roleUser(req);
+			if (!page || page < 1) {
+				page = 1;
+			}
+			if (page > totalPage && page > 1) {
+				page = totalPage;
+			}
 
-        res.render("admin/teacher/index", {
-            req,
-            teachers,
-            moment,
-            title,
-            moduleName,
-            totalPage,
-            page,
-            recordNumber,
-            permissionUser,
-            permissionUtils,
-            getPaginateUrl,
-            userName,
-        });
-    },
+			const offset = (page - 1) * recordNumber;
+			const teachers = await User.findAll({
+				include: {
+					model: Type,
+					where: {
+						name: {
+							[Op.or]: ["Teacher", "TA"],
+						},
+					},
+				},
+				where: filters,
+				attributes: [
+					"id",
+					"name",
+					"email",
+					"phone",
+					"typeId",
+					"address",
+					"createdAt",
+				],
+				limit: +recordNumber,
+				offset: offset,
+			});
 
-    add: async (req, res) => {
-        const title = "Thêm giảng viên, trợ giảng";
-        const userName = req.user.name;
-        const errors = req.flash("errors");
+			const permissionUser = await permissionUtils.roleUser(req);
 
-        const permissionUser = await permissionUtils.roleUser(req);
+			res.render("admin/teacher/index", {
+				req,
+				teachers,
+				moment,
+				title,
+				moduleName,
+				totalPage,
+				page,
+				recordNumber,
+				permissionUser,
+				permissionUtils,
+				getPaginateUrl,
+				userName,
+			});
+		} catch (error) {
+			console.log(error.message);
+			res.render("/error/500");
+		}
+	},
 
-        res.render("admin/teacher/add", {
-            title,
-            moduleName,
-            errors,
-            validate,
-            permissionUser,
-            permissionUtils,
-            userName,
-        });
-    },
+	add: async (req, res) => {
+		try {
+			const title = "Thêm giảng viên, trợ giảng";
+			const userName = req.user.name;
+			const errors = req.flash("errors");
 
-    store: async (req, res) => {
-        const result = validationResult(req);
-        if (result.isEmpty()) {
-            const { name, email, phone, address, typeName } = req.body;
-            const type = await Type.findOne({
-                where: {
-                    name: typeName,
-                },
-            });
-            await User.create({
-                name: name,
-                email: email,
-                phone: phone,
-                address: address,
-                typeId: type.id,
-            });
-            return res.redirect("/admin/teachers");
-        }
-        req.flash("errors", result.errors);
-        res.redirect("/admin/teachers/add");
-    },
+			const permissionUser = await permissionUtils.roleUser(req);
 
-    edit: async (req, res) => {
-        const { id } = req.params;
-        const userName = req.user.name;
-        const title = "Sửa giảng viên, trợ giảng";
-        const errors = req.flash("errors");
+			res.render("admin/teacher/add", {
+				title,
+				moduleName,
+				errors,
+				validate,
+				permissionUser,
+				permissionUtils,
+				userName,
+			});
+		} catch (error) {
+			console.log(error.message);
+			res.render("/error/500");
+		}
+	},
 
-        const teacher = await User.findOne({
-            include: {
-                model: Type,
-            },
-            where: {
-                id: id,
-            },
-        });
+	store: async (req, res) => {
+		try {
+			const result = validationResult(req);
+			if (result.isEmpty()) {
+				const { name, email, phone, address, typeName } = req.body;
+				const type = await Type.findOne({
+					where: {
+						name: typeName,
+					},
+				});
+				await User.create({
+					name: name,
+					email: email,
+					phone: phone,
+					address: address,
+					typeId: type.id,
+				});
+				return res.redirect("/admin/teachers");
+			}
+			req.flash("errors", result.errors);
+			res.redirect("/admin/teachers/add");
+		} catch (error) {
+			console.log(error.message);
+			res.render("/error/500");
+		}
+	},
 
-        const permissionUser = await permissionUtils.roleUser(req);
+	edit: async (req, res) => {
+		try {
+			const { id } = req.params;
+			const userName = req.user.name;
+			const title = "Sửa giảng viên, trợ giảng";
+			const errors = req.flash("errors");
 
-        res.render("admin/teacher/edit", {
-            teacher,
-            title,
-            moduleName,
-            errors,
-            validate,
-            permissionUtils,
-            permissionUser,
-            userName,
-        });
-    },
+			const teacher = await User.findOne({
+				include: {
+					model: Type,
+				},
+				where: {
+					id: id,
+				},
+			});
 
-    update: async (req, res) => {
-        const { id } = req.params;
-        const { name, email, phone, address, typeName } = req.body;
+			const permissionUser = await permissionUtils.roleUser(req);
 
-        const result = validationResult(req);
-        console.log(result);
-        if (result.isEmpty()) {
-            const type = await Type.findOne({
-                where: {
-                    name: typeName,
-                },
-            });
-            await User.update(
-                {
-                    name: name,
-                    email: email,
-                    phone: phone,
-                    address: address,
-                    typeId: type.id,
-                },
-                {
-                    where: {
-                        id: id,
-                    },
-                }
-            );
+			res.render("admin/teacher/edit", {
+				teacher,
+				title,
+				moduleName,
+				errors,
+				validate,
+				permissionUtils,
+				permissionUser,
+				userName,
+			});
+		} catch (error) {
+			console.log(error.message);
+			res.render("/error/500");
+		}
+	},
 
-            return res.redirect(`/admin/teachers/edit/${id}`);
-        }
+	update: async (req, res) => {
+		try {
+			const { id } = req.params;
+			const { name, email, phone, address, typeName } = req.body;
 
-        console.log("Lỗi", result);
+			const result = validationResult(req);
+			console.log(result);
+			if (result.isEmpty()) {
+				const type = await Type.findOne({
+					where: {
+						name: typeName,
+					},
+				});
+				await User.update(
+					{
+						name: name,
+						email: email,
+						phone: phone,
+						address: address,
+						typeId: type.id,
+					},
+					{
+						where: {
+							id: id,
+						},
+					}
+				);
 
-        req.flash("errors", result.errors);
-        res.redirect(`/admin/teachers/edit/${id}`);
-    },
+				return res.redirect(`/admin/teachers/edit/${id}`);
+			}
 
-    destroy: async (req, res) => {
-        const { id } = req.params;
-        const teacher = await User.findOne({
-            where: {
-                id: id,
-            },
-        });
-        if (teacher) {
-            await User.destroy({
-                where: {
-                    id: id,
-                },
-            });
-        }
-        res.redirect("/admin/teachers");
-    },
+			console.log("Lỗi", result);
 
-    destroyAll: async (req, res) => {
-        const { listTeacherDelete } = req.body;
-        const listIdTeacher = listTeacherDelete.split(",");
-        await User.destroy({
-            where: {
-                id: {
-                    [Op.in]: listIdTeacher,
-                },
-            },
-        });
-        res.redirect("/admin/teachers");
-    },
+			req.flash("errors", result.errors);
+			res.redirect(`/admin/teachers/edit/${id}`);
+		} catch (error) {
+			console.log(error.message);
+			res.render("/error/500");
+		}
+	},
 
-    detail: async (req, res) => {
-        const title = "Chi tiết giảng viên/trợ giảng";
-        const userName = req.user.name;
-        const { id } = req.params;
+	destroy: async (req, res) => {
+		try {
+			const { id } = req.params;
+			const teacher = await User.findOne({
+				where: {
+					id: id,
+				},
+			});
+			if (teacher) {
+				await User.destroy({
+					where: {
+						id: id,
+					},
+				});
+			}
+			res.redirect("/admin/teachers");
+		} catch (error) {
+			console.log(error.message);
+			res.render("/error/500");
+		}
+	},
 
-        const teacher = await User.findOne({
-            include: {
-                model: Type,
-            },
-            where: {
-                id: id,
-            },
-        });
-        const classes = await teacher.getClasses();
+	destroyAll: async (req, res) => {
+		try {
+			const { listTeacherDelete } = req.body;
+			const listIdTeacher = listTeacherDelete.split(",");
+			await User.destroy({
+				where: {
+					id: {
+						[Op.in]: listIdTeacher,
+					},
+				},
+			});
+			res.redirect("/admin/teachers");
+		} catch (error) {
+			console.log(error.message);
+			res.render("/error/500");
+		}
+	},
 
-        const permissionUser = await permissionUtils.roleUser(req);
+	detail: async (req, res) => {
+		try {
+			const title = "Chi tiết giảng viên/trợ giảng";
+			const userName = req.user.name;
+			const { id } = req.params;
 
-        res.render("admin/teacher/detail", {
-            title,
-            moduleName,
-            teacher,
-            classes,
-            permissionUser,
-            permissionUtils,
-            userName,
-        });
-    },
+			const teacher = await User.findOne({
+				include: {
+					model: Type,
+				},
+				where: {
+					id: id,
+				},
+			});
+			const classes = await teacher.getClasses();
 
-    export: async (req, res) => {
-        const teachers = await User.findAll({
-            include: {
-                model: Type,
-                where: {
-                    name: {
-                        [Op.or]: ["Teacher", "TA"],
-                    },
-                },
-            },
-        });
-        teachers.forEach((teacher, index) => {
-            if (teacher.Type.name === "Teacher") {
-                teachers[index].dataValues.typeName = "Giảng viên";
-            } else {
-                teachers[index].dataValues.typeName = "Trợ giảng";
-            }
-        });
-        const columns = constants.teacherColumnFile;
-        const date = new Date().getTime();
-        const fileName = `user_teacher_${date}.xlsx`;
-        exportFile(res, teachers, "User_Teacher", fileName, columns);
-    },
+			const permissionUser = await permissionUtils.roleUser(req);
 
-    import: async (req, res) => {
-        const title = "Import File Teacher";
-        const userName = req.user.name;
+			res.render("admin/teacher/detail", {
+				title,
+				moduleName,
+				teacher,
+				classes,
+				permissionUser,
+				permissionUtils,
+				userName,
+			});
+		} catch (error) {
+			console.log(error.message);
+			res.render("/error/500");
+		}
+	},
 
-        const permissionUser = await permissionUtils.roleUser(req);
+	export: async (req, res) => {
+		try {
+			const teachers = await User.findAll({
+				include: {
+					model: Type,
+					where: {
+						name: {
+							[Op.or]: ["Teacher", "TA"],
+						},
+					},
+				},
+			});
+			teachers.forEach((teacher, index) => {
+				if (teacher.Type.name === "Teacher") {
+					teachers[index].dataValues.typeName = "Giảng viên";
+				} else {
+					teachers[index].dataValues.typeName = "Trợ giảng";
+				}
+			});
+			const columns = constants.teacherColumnFile;
+			const date = new Date().getTime();
+			const fileName = `user_teacher_${date}.xlsx`;
+			exportFile(res, teachers, "User_Teacher", fileName, columns);
+		} catch (error) {
+			console.log(error.message);
+			res.render("/error/500");
+		}
+	},
 
-        res.render("admin/teacher/import", {
-            title,
-            moduleName,
-            permissionUser,
-            permissionUtils,
-            userName,
-        });
-    },
+	import: async (req, res) => {
+		try {
+			const title = "Import File Teacher";
+			const userName = req.user.name;
 
-    handleImport: async (req, res) => {
-        const file = req.file;
-        console.log("Tên file", file);
-        const data = await importFile(file.path);
-        for (let index = 0; index < data.length; index++) {
-            if (data[index].column_4 === "Giảng viên") {
-                data[index].column_4 = "Teacher";
-            } else {
-                data[index].column_4 = "TA";
-            }
-            const type = await Type.findOne({
-                where: {
-                    name: data[index].column_4,
-                },
-            });
-            console.log(type);
-            await User.create({
-                name: data[index].column_1,
-                email: data[index].column_2.text,
-                phone: data[index].column_3,
-                typeId: type.id,
-                address: data[index].column_5,
-            });
-        }
-        res.redirect("/admin/teachers");
-    },
+			const permissionUser = await permissionUtils.roleUser(req);
+
+			res.render("admin/teacher/import", {
+				title,
+				moduleName,
+				permissionUser,
+				permissionUtils,
+				userName,
+			});
+		} catch (error) {
+			console.log(error.message);
+			res.render("/error/500");
+		}
+	},
+
+	handleImport: async (req, res) => {
+		try {
+			const file = req.file;
+			console.log("Tên file", file);
+			const data = await importFile(file.path);
+			for (let index = 0; index < data.length; index++) {
+				if (data[index].column_4 === "Giảng viên") {
+					data[index].column_4 = "Teacher";
+				} else {
+					data[index].column_4 = "TA";
+				}
+				const type = await Type.findOne({
+					where: {
+						name: data[index].column_4,
+					},
+				});
+				console.log(type);
+				await User.create({
+					name: data[index].column_1,
+					email: data[index].column_2.text,
+					phone: data[index].column_3,
+					typeId: type.id,
+					address: data[index].column_5,
+				});
+			}
+			res.redirect("/admin/teachers");
+		} catch (error) {
+			console.log(error.message);
+			res.render("/error/500");
+		}
+	},
 };

@@ -23,7 +23,6 @@ module.exports = () => {
                 throw new Error("Tên lớp học đã tồn tại");
             }
         }),
-        body("classQuantity", "Sĩ số không được để trống").notEmpty(),
         body("classStartDate", "Vui lòng chọn ngày khai giảng").notEmpty(),
         body("classSchedule", "Lịch học không được để trống").notEmpty(),
         body("courseId", "Vui lòng chọn khóa học").notEmpty(),

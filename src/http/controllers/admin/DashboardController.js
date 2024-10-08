@@ -8,51 +8,56 @@ const Type = model.Type;
 const moduleName = "Tổng quan";
 
 module.exports = {
-    index: async (req, res) => {
-        const title = "Dashboard";
-        const userName = req.user.name;
+	index: async (req, res) => {
+		try {
+			const title = "Dashboard";
+			const userName = req.user.name;
 
-        const studentQuantity = await User.count({
-            include: {
-                model: Type,
-                where: {
-                    name: "Student",
-                },
-            },
-        });
+			const studentQuantity = await User.count({
+				include: {
+					model: Type,
+					where: {
+						name: "Student",
+					},
+				},
+			});
 
-        const courseQuantity = await Course.count();
-        const classQuantity = await Class.count();
-        const teacherQuantity = await User.count({
-            include: {
-                model: Type,
-                where: {
-                    name: "Teacher",
-                },
-            },
-        });
-        const teachingAssistantQuantity = await User.count({
-            include: {
-                model: Type,
-                where: {
-                    name: "TA",
-                },
-            },
-        });
+			const courseQuantity = await Course.count();
+			const classQuantity = await Class.count();
+			const teacherQuantity = await User.count({
+				include: {
+					model: Type,
+					where: {
+						name: "Teacher",
+					},
+				},
+			});
+			const teachingAssistantQuantity = await User.count({
+				include: {
+					model: Type,
+					where: {
+						name: "TA",
+					},
+				},
+			});
 
-        const permissionUser = await permissionUtils.roleUser(req);
+			const permissionUser = await permissionUtils.roleUser(req);
 
-        res.render("admin/dashboard/index", {
-            title,
-            moduleName,
-            studentQuantity,
-            courseQuantity,
-            classQuantity,
-            teacherQuantity,
-            teachingAssistantQuantity,
-            permissionUtils,
-            permissionUser,
-            userName,
-        });
-    },
+			res.render("admin/dashboard/index", {
+				title,
+				moduleName,
+				studentQuantity,
+				courseQuantity,
+				classQuantity,
+				teacherQuantity,
+				teachingAssistantQuantity,
+				permissionUtils,
+				permissionUser,
+				userName,
+			});
+		} catch (error) {
+			console.log(error.message);
+			res.render("/error/500");
+		}
+	},
 };

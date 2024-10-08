@@ -2,7 +2,6 @@
 
 <ul class="ml-4">
 	<li class="py-2"><strong>Tên: </strong><%= classInfor.name %></li>
-	<li class="py-2"><strong>Sĩ số: </strong><%= classInfor.quantity %></li>
 	<li class="py-2"><strong>Ngày khai giảng: </strong><%= classInfor.startDate.toLocaleDateString('en-GB') %></li>
 	<li class="py-2"><strong>Ngày bế giảng: </strong><%= classInfor.endDate.toLocaleDateString('en-GB') %></li>
 	<li class="py-2"><strong>Lịch học: </strong>
@@ -33,10 +32,6 @@
 		class="btn btn-primary">Thêm học viên</a>
 	<a href="/admin/classes/attendance/<%= classInfor.id %>"
 		class="btn btn-warning">Điểm danh</a>
-	<a href="/admin/classes/questions/<%= classInfor.id %>"
-		class="btn btn-danger">Câu hỏi</a>
-	<a href="/admin/classes/exercises/<%= classInfor.id %>"
-		class="btn btn-info">Bài tập</a>
 </h4>
 <table class="table table-bordered text-center">
 	<thead>
