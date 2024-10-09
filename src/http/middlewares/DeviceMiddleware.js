@@ -29,7 +29,7 @@ module.exports = async (req, res, next) => {
                 if (err) {
                     return next(err);
                 }
-                res.redirect("/");
+                res.redirect("/admin");
             });
             return;
         }
