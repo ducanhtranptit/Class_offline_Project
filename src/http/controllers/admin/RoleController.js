@@ -142,7 +142,7 @@ module.exports = {
 
     edit: async (req, res) => {
         try {
-            const title = "Sửa role";
+            const title = "Sửa quyền";
             const userName = req.user.name;
             const { id } = req.params;
             const errors = req.flash("errors");

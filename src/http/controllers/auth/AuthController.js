@@ -81,40 +81,8 @@ module.exports = {
 		}
 	},
 
-	loginFacebook: (req, res) => {
-		res.redirect("/");
-	},
-
 	loginGoogle: (req, res) => {
-		res.redirect("/");
-	},
-
-	loginGithub: async (req, res) => {
-		try {
-			if (req.isConnectGithub) {
-				const typeName = await Type.findOne({
-					where: {
-						id: req.user.typeId,
-					},
-				});
-
-				if (typeName.name === "Admin") {
-					return res.redirect("/admin/profile");
-				} else if (
-					typeName.name === "Teacher" ||
-					typeName.name === "TA"
-				) {
-					return res.redirect("/teacher/profile");
-				} else {
-					return res.redirect("/profile");
-				}
-			} else {
-				return res.redirect("/");
-			}
-		} catch (error) {
-			console.log(error.message);
-			res.render("/error/500");
-		}
+		res.redirect("/admin");
 	},
 
 	verification: async (req, res) => {
@@ -161,7 +129,7 @@ module.exports = {
 					return;
 				}
 
-				res.redirect("/");
+				res.redirect("/admin");
 				return;
 			}
 			req.flash("message", "Mã OTP không chính xác");
@@ -186,31 +154,6 @@ module.exports = {
 		res.render("auth/forgotPassword", {
 			layout: "layouts/auth.layout.ejs",
 		});
-	},
-
-	handleForgotPassword: async (req, res) => {
-		try {
-			const { email } = req.body;
-			const user = await User.findOne({
-				where: {
-					email: email,
-				},
-			});
-			const token = jwt.sign(
-				{
-					exp: Math.floor(Date.now() / 1000) + 60 * 60,
-					data: user,
-				},
-				JWT_SECRET
-			);
-			const link = `http://class-offline.huukhaidev.com/auth/reset?token=${token}`;
-			const html = `<b>Vui lòng click vào đây để lấy lại mật khẩu <a href="${link}">tại đây</a></b>`;
-			SendMail(email, "Lấy lại mật khẩu", html);
-			res.redirect("/auth/login");
-		} catch (error) {
-			console.log(error.message);
-			res.render("/error/500");
-		}
 	},
 
 	reset: (req, res) => {

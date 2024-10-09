@@ -7,7 +7,8 @@
 			name="nameRole"
 			placeholder="Tên Role..."
 			class="form-control"
-			value="<%= role.name %>" />
+			value="<%= role.name %>"
+			<%= role.name === "Super Admin" ? "disabled" : "" %> />
 		<span class="text-danger"><%= validate.getError(errors, "nameRole") %></span>
 	</div>
 	<table class="table table-bordered">
@@ -27,39 +28,44 @@
 								id="usersRead"
 								name="permission"
 								value="users.read"
-								<%= permissionUtils.get(permissions, "users.read") && "checked"  %> />
+								<%= permissionUtils.get(permissions, "users.read") && "checked" %>
+								<%= role.name === "Super Admin" ? "disabled" : "" %> />
 							<label for="usersRead">Xem</label>
 						</div>
 						<div class="col">
 							<input type="checkbox"
-								name="permission"
 								id="usersAdd"
+								name="permission"
 								value="users.add"
-								<%= permissionUtils.get(permissions, "users.add") && "checked"  %> />
+								<%= permissionUtils.get(permissions, "users.add") && "checked" %>
+								<%= role.name === "Super Admin" ? "disabled" : "" %> />
 							<label for="usersAdd">Thêm</label>
 						</div>
 						<div class="col">
 							<input type="checkbox"
-								name="permission"
 								id="usersUpdate"
+								name="permission"
 								value="users.update"
-								<%= permissionUtils.get(permissions, "users.update") && "checked"  %> />
+								<%= permissionUtils.get(permissions, "users.update") && "checked" %>
+								<%= role.name === "Super Admin" ? "disabled" : "" %> />
 							<label for="usersUpdate">Sửa</label>
 						</div>
 						<div class="col">
 							<input type="checkbox"
-								name="permission"
 								id="usersDelete"
+								name="permission"
 								value="users.delete"
-								<%= permissionUtils.get(permissions, "users.delete") && "checked"  %> />
+								<%= permissionUtils.get(permissions, "users.delete") && "checked" %>
+								<%= role.name === "Super Admin" ? "disabled" : "" %> />
 							<label for="usersDelete">Xóa</label>
 						</div>
 						<div class="col">
 							<input type="checkbox"
-								name="permission"
 								id="usersPermission"
+								name="permission"
 								value="users.permission"
-								<%= permissionUtils.get(permissions, "users.permission") && "checked"  %> />
+								<%= permissionUtils.get(permissions, "users.permission") && "checked" %>
+								<%= role.name === "Super Admin" ? "disabled" : "" %> />
 							<label for="usersPermission">Phân quyền</label>
 						</div>
 					</div>
@@ -71,34 +77,38 @@
 					<div class="row">
 						<div class="col">
 							<input type="checkbox"
-								name="permission"
 								id="rolesRead"
+								name="permission"
 								value="roles.read"
-								<%= permissionUtils.get(permissions, "roles.read") && "checked"  %> />
+								<%= permissionUtils.get(permissions, "roles.read") && "checked" %>
+								<%= role.name === "Super Admin" ? "disabled" : "" %> />
 							<label for="rolesRead">Xem</label>
 						</div>
 						<div class="col">
 							<input type="checkbox"
-								name="permission"
 								id="rolesAdd"
+								name="permission"
 								value="roles.add"
-								<%= permissionUtils.get(permissions, "roles.add") && "checked"  %> />
+								<%= permissionUtils.get(permissions, "roles.add") && "checked" %>
+								<%= role.name === "Super Admin" ? "disabled" : "" %> />
 							<label for="rolesAdd">Thêm</label>
 						</div>
 						<div class="col">
 							<input type="checkbox"
-								name="permission"
 								id="rolesUpdate"
+								name="permission"
 								value="roles.update"
-								<%= permissionUtils.get(permissions, "roles.update") && "checked"  %> />
+								<%= permissionUtils.get(permissions, "roles.update") && "checked" %>
+								<%= role.name === "Super Admin" ? "disabled" : "" %> />
 							<label for="rolesUpdate">Sửa</label>
 						</div>
 						<div class="col">
 							<input type="checkbox"
-								name="permission"
 								id="rolesDelete"
+								name="permission"
 								value="roles.delete"
-								<%= permissionUtils.get(permissions, "roles.delete") && "checked"  %> />
+								<%= permissionUtils.get(permissions, "roles.delete") && "checked" %>
+								<%= role.name === "Super Admin" ? "disabled" : "" %> />
 							<label for="rolesDelete">Xóa</label>
 						</div>
 					</div>
@@ -110,34 +120,38 @@
 					<div class="row">
 						<div class="col">
 							<input type="checkbox"
-								name="permission"
 								id="coursesRead"
+								name="permission"
 								value="courses.read"
-								<%= permissionUtils.get(permissions, "courses.read") && "checked"  %> />
+								<%= permissionUtils.get(permissions, "courses.read") && "checked" %>
+								<%= role.name === "Super Admin" ? "disabled" : "" %> />
 							<label for="coursesRead">Xem</label>
 						</div>
 						<div class="col">
 							<input type="checkbox"
-								name="permission"
 								id="coursesAdd"
+								name="permission"
 								value="courses.add"
-								<%= permissionUtils.get(permissions, "courses.add") && "checked"  %> />
+								<%= permissionUtils.get(permissions, "courses.add") && "checked" %>
+								<%= role.name === "Super Admin" ? "disabled" : "" %> />
 							<label for="coursesAdd">Thêm</label>
 						</div>
 						<div class="col">
 							<input type="checkbox"
-								name="permission"
 								id="coursesUpdate"
+								name="permission"
 								value="courses.update"
-								<%= permissionUtils.get(permissions, "courses.update") && "checked"  %> />
+								<%= permissionUtils.get(permissions, "courses.update") && "checked" %>
+								<%= role.name === "Super Admin" ? "disabled" : "" %> />
 							<label for="coursesUpdate">Sửa</label>
 						</div>
 						<div class="col">
 							<input type="checkbox"
-								name="permission"
 								id="coursesDelete"
+								name="permission"
 								value="courses.delete"
-								<%= permissionUtils.get(permissions, "courses.delete") && "checked"  %> />
+								<%= permissionUtils.get(permissions, "courses.delete") && "checked" %>
+								<%= role.name === "Super Admin" ? "disabled" : "" %> />
 							<label for="coursesDelete">Xóa</label>
 						</div>
 					</div>
@@ -149,34 +163,38 @@
 					<div class="row">
 						<div class="col">
 							<input type="checkbox"
-								name="permission"
 								id="classesRead"
+								name="permission"
 								value="classes.read"
-								<%= permissionUtils.get(permissions, "classes.read") && "checked"  %> />
+								<%= permissionUtils.get(permissions, "classes.read") && "checked" %>
+								<%= role.name === "Super Admin" ? "disabled" : "" %> />
 							<label for="classesRead">Xem</label>
 						</div>
 						<div class="col">
 							<input type="checkbox"
-								name="permission"
 								id="classesAdd"
+								name="permission"
 								value="classes.add"
-								<%= permissionUtils.get(permissions, "classes.add") && "checked"  %> />
+								<%= permissionUtils.get(permissions, "classes.add") && "checked" %>
+								<%= role.name === "Super Admin" ? "disabled" : "" %> />
 							<label for="classesAdd">Thêm</label>
 						</div>
 						<div class="col">
 							<input type="checkbox"
-								name="permission"
 								id="classesUpdate"
+								name="permission"
 								value="classes.update"
-								<%= permissionUtils.get(permissions, "classes.update") && "checked"  %> />
+								<%= permissionUtils.get(permissions, "classes.update") && "checked" %>
+								<%= role.name === "Super Admin" ? "disabled" : "" %> />
 							<label for="classesUpdate">Sửa</label>
 						</div>
 						<div class="col">
 							<input type="checkbox"
-								name="permission"
 								id="classesDelete"
+								name="permission"
 								value="classes.delete"
-								<%= permissionUtils.get(permissions, "classes.delete") && "checked"  %> />
+								<%= permissionUtils.get(permissions, "classes.delete") && "checked" %>
+								<%= role.name === "Super Admin" ? "disabled" : "" %> />
 							<label for="classesDelete">Xóa</label>
 						</div>
 					</div>
@@ -188,35 +206,38 @@
 					<div class="row">
 						<div class="col">
 							<input type="checkbox"
-								name="permission"
 								id="teachersRead"
+								name="permission"
 								value="teachers.read"
-								<%= permissionUtils.get(permissions, "teachers.read") && "checked"  %> />
+								<%= permissionUtils.get(permissions, "teachers.read") && "checked" %>
+								<%= role.name === "Super Admin" ? "disabled" : "" %> />
 							<label for="teachersRead">Xem</label>
 						</div>
 						<div class="col">
-
 							<input type="checkbox"
-								name="permission"
 								id="teachersAdd"
+								name="permission"
 								value="teachers.add"
-								<%= permissionUtils.get(permissions, "teachers.add") && "checked"  %> />
+								<%= permissionUtils.get(permissions, "teachers.add") && "checked" %>
+								<%= role.name === "Super Admin" ? "disabled" : "" %> />
 							<label for="teachersAdd">Thêm</label>
 						</div>
 						<div class="col">
 							<input type="checkbox"
-								name="permission"
 								id="teachersUpdate"
+								name="permission"
 								value="teachers.update"
-								<%= permissionUtils.get(permissions, "teachers.update") && "checked"  %> />
+								<%= permissionUtils.get(permissions, "teachers.update") && "checked" %>
+								<%= role.name === "Super Admin" ? "disabled" : "" %> />
 							<label for="teachersUpdate">Sửa</label>
 						</div>
 						<div class="col">
 							<input type="checkbox"
-								name="permission"
 								id="teachersDelete"
+								name="permission"
 								value="teachers.delete"
-								<%= permissionUtils.get(permissions, "teachers.delete") && "checked"  %> />
+								<%= permissionUtils.get(permissions, "teachers.delete") && "checked" %>
+								<%= role.name === "Super Admin" ? "disabled" : "" %> />
 							<label for="teachersDelete">Xóa</label>
 						</div>
 					</div>
@@ -228,34 +249,38 @@
 					<div class="row">
 						<div class="col">
 							<input type="checkbox"
-								name="permission"
 								id="studentsRead"
+								name="permission"
 								value="students.read"
-								<%= permissionUtils.get(permissions, "students.read") && "checked"  %> />
+								<%= permissionUtils.get(permissions, "students.read") && "checked" %>
+								<%= role.name === "Super Admin" ? "disabled" : "" %> />
 							<label for="studentsRead">Xem</label>
 						</div>
 						<div class="col">
 							<input type="checkbox"
-								name="permission"
 								id="studentsAdd"
+								name="permission"
 								value="students.add"
-								<%= permissionUtils.get(permissions, "students.add") && "checked"  %> />
+								<%= permissionUtils.get(permissions, "students.add") && "checked" %>
+								<%= role.name === "Super Admin" ? "disabled" : "" %> />
 							<label for="studentsAdd">Thêm</label>
 						</div>
 						<div class="col">
 							<input type="checkbox"
-								name="permission"
 								id="studentsUpdate"
+								name="permission"
 								value="students.update"
-								<%= permissionUtils.get(permissions, "students.update") && "checked"  %> />
+								<%= permissionUtils.get(permissions, "students.update") && "checked" %>
+								<%= role.name === "Super Admin" ? "disabled" : "" %> />
 							<label for="studentsUpdate">Sửa</label>
 						</div>
 						<div class="col">
 							<input type="checkbox"
-								name="permission"
 								id="studentsDelete"
+								name="permission"
 								value="students.delete"
-								<%= permissionUtils.get(permissions, "students.delete") && "checked"  %> />
+								<%= permissionUtils.get(permissions, "students.delete") && "checked" %>
+								<%= role.name === "Super Admin" ? "disabled" : "" %> />
 							<label for="studentsDelete">Xóa</label>
 						</div>
 					</div>
@@ -267,8 +292,10 @@
 		<input type="hidden"
 			name="_method"
 			value="PATCH">
-		<button type="submit"
-			class="btn btn-primary">Sửa</button>
-
+			<button type="submit"
+				class="btn btn-primary"
+				<%= role.name === "Super Admin" ? "style='display:none;'" : "" %>>
+				Sửa
+			</button>
 	</div>
 </form>

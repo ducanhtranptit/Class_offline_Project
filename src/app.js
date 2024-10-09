@@ -13,7 +13,6 @@ const methodOverride = require("method-override");
 const cors = require("cors");
 
 // Khai báo Router
-const studentsRouter = require("./routes/student/index");
 const adminRouter = require("./routes/admin/index");
 const authRouter = require("./routes/auth/index");
 const connectRouter = require("./routes/connect/index");
@@ -23,12 +22,9 @@ const model = require("./models/index");
 
 // Khai báo Passport
 const localPassport = require("./passport/auth/localPassport");
-const facebookPassport = require("./passport/auth/facebookPassport");
 const googlePassport = require("./passport/auth/googlePassport");
-const githubPassport = require("./passport/auth/githubPassport");
 
 // Khai báo Connect-Social
-const connectFacebookPassport = require("./passport/connect/facebookPassport");
 const connectGooglePassport = require("./passport/connect/googlePassport");
 // const connectGithubPassport = require("./passport/connect/githubPassport");
 
@@ -62,15 +58,12 @@ passport.deserializeUser(async function (id, done) {
 });
 
 // // Connect Social
-passport.use("connectFacebook", connectFacebookPassport);
 passport.use("connectGoogle", connectGooglePassport);
 // passport.use("connect-github", connectGithubPassport);
 
 // // Login Social
 passport.use("local", localPassport);
-passport.use("facebook", facebookPassport);
 passport.use("google", googlePassport);
-passport.use("github", githubPassport);
 
 // view engine setup
 app.set("views", path.join(__dirname, "./resources/views"));
@@ -102,7 +95,6 @@ app.use(LoginFirstTimeMiddleware);
 app.use(DeviceMiddleware);
 app.use("/connect", connectRouter);
 app.use("/admin", RoleMiddleware, adminRouter);
-app.use("/", RoleMiddleware, studentsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

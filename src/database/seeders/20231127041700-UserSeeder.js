@@ -13,6 +13,7 @@ module.exports = {
 					phone: "0972414260",
 					address: "Hà Nội",
 					typeId: 1,
+					firstLogin: 1,
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},
