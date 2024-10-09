@@ -59,7 +59,6 @@ passport.deserializeUser(async function (id, done) {
 
 // // Connect Social
 passport.use("connectGoogle", connectGooglePassport);
-// passport.use("connect-github", connectGithubPassport);
 
 // // Login Social
 passport.use("local", localPassport);

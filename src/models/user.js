@@ -15,16 +15,16 @@ module.exports = (sequelize, DataTypes) => {
             User.hasOne(models.LoginToken, { foreignKey: "userId" });
             User.hasMany(models.UserSocial, { foreignKey: "userId" });
             User.belongsToMany(models.Role, {
-                through: "user_role",
+                through: "User_Role",
                 foreignKey: "userId",
             });
             User.belongsToMany(models.Permission, {
-                through: "user_permissions",
+                through: "User_Permissions",
                 foreignKey: "userId",
             });
             User.hasMany(models.Course, { foreignKey: "teacherId" });
             User.belongsToMany(models.Class, {
-                through: "classes_teachers",
+                through: "Classes_Teachers",
                 foreignKey: "teacherId",
             });
             User.hasMany(models.TeacherCalendar);
@@ -57,7 +57,7 @@ module.exports = (sequelize, DataTypes) => {
         {
             sequelize,
             modelName: "User",
-            tableName: "users",
+            tableName: "Users",
         }
     );
     return User;

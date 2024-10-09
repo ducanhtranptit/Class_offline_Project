@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
         {
             sequelize,
             modelName: "UserColumn",
-            tableName: "usercolumns",
+            tableName: "UserColumns",
         }
     );
     return UserColumn;
