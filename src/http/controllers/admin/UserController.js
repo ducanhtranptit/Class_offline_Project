@@ -203,7 +203,7 @@ module.exports = {
 	update: async (req, res) => {
 		try {
 			const { id } = req.params;
-			const { name, email, phone, address } = req.body;
+			const { name, email, phone, address, password } = req.body;
 
 			const result = validationResult(req);
 			if (result.isEmpty()) {
@@ -217,6 +217,7 @@ module.exports = {
 						name: name,
 						email: email,
 						phone: phone,
+						password: bcrypt.hashSync(password, saltRounds),
 						address: address,
 						typeId: type.id,
 					},

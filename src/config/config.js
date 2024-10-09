@@ -10,10 +10,10 @@ module.exports = {
         dialect: process.env.DB_DRIVER,
         logging: true,
         dialectOptions: {
-            useUTC: true, // for reading from database
+            useUTC: true,
             collate: "utf8mb4_general_ci",
         },
-        timezone: "+07:00", // for writing to database
+        timezone: "+07:00", 
     },
     test: {
         username: process.env.DB_USERNAME,
