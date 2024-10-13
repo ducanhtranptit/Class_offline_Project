@@ -2,216 +2,39 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.bulkInsert(
-      "StudentsClasses",
-      [
-        {
-          studentId: 5,
-          classId: 1,
-          statusId: 1,
-          completeDate: null,
-          dropDate: null,
-          recover: null,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          studentId: 6,
-          classId: 2,
-          statusId: 2,
-          completeDate: null,
-          dropDate: null,
-          recover: null,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          studentId: 7,
-          classId: 3,
-          statusId: 1,
-          completeDate: null,
-          dropDate: null,
-          recover: null,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          studentId: 8,
-          classId: 4,
-          statusId: 2,
-          completeDate: null,
-          dropDate: null,
-          recover: null,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          studentId: 9,
-          classId: 5,
-          statusId: 1,
-          completeDate: null,
-          dropDate: null,
-          recover: null,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          studentId: 10,
-          classId: 6,
-          statusId: 2,
-          completeDate: null,
-          dropDate: null,
-          recover: null,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          studentId: 11,
-          classId: 7,
-          statusId: 1,
-          completeDate: null,
-          dropDate: null,
-          recover: null,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          studentId: 12,
-          classId: 8,
-          statusId: 2,
-          completeDate: null,
-          dropDate: null,
-          recover: null,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          studentId: 13,
-          classId: 9,
-          statusId: 1,
-          completeDate: null,
-          dropDate: null,
-          recover: null,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          studentId: 14,
-          classId: 10,
-          statusId: 2,
-          completeDate: null,
-          dropDate: null,
-          recover: null,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          studentId: 15,
-          classId: 11,
-          statusId: 1,
-          completeDate: null,
-          dropDate: null,
-          recover: null,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          studentId: 16,
-          classId: 12,
-          statusId: 2,
-          completeDate: null,
-          dropDate: null,
-          recover: null,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          studentId: 17,
-          classId: 13,
-          statusId: 1,
-          completeDate: null,
-          dropDate: null,
-          recover: null,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          studentId: 18,
-          classId: 14,
-          statusId: 2,
-          completeDate: null,
-          dropDate: null,
-          recover: null,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          studentId: 19,
-          classId: 15,
-          statusId: 1,
-          completeDate: null,
-          dropDate: null,
-          recover: null,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          studentId: 20,
-          classId: 16,
-          statusId: 2,
-          completeDate: null,
-          dropDate: null,
-          recover: null,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          studentId: 21,
-          classId: 17,
-          statusId: 1,
-          completeDate: null,
-          dropDate: null,
-          recover: null,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          studentId: 22,
-          classId: 18,
-          statusId: 2,
-          completeDate: null,
-          dropDate: null,
-          recover: null,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          studentId: 23,
-          classId: 19,
-          statusId: 1,
-          completeDate: null,
-          dropDate: null,
-          recover: null,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          studentId: 24,
-          classId: 20,
-          statusId: 2,
-          completeDate: null,
-          dropDate: null,
-          recover: null,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-      ],
-      {}
-    );
-  },
+	async up(queryInterface, Sequelize) {
+		const studentsClasses = [];
+		const totalClasses = 8;
+		const totalStudents = 30;
+		const minStudentsPerClass = 15;
 
-  async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete("StudentsClasses", null, {});
-  },
+		let classId = 1;
+
+		// Loop to ensure each class has at least 15 students
+		for (let studentId = 21; studentId < 21 + totalStudents; studentId++) {
+			// Each student can enroll in multiple classes
+			for (let i = 0; i < 5; i++) {
+				// Allow each student to enroll in 5 different classes
+				studentsClasses.push({
+					studentId,
+					classId,
+					statusId: studentId % 2 === 0 ? 1 : 2, // Alternating status
+					completeDate: null,
+					dropDate: null,
+					recover: null,
+					createdAt: new Date(),
+					updatedAt: new Date(),
+				});
+
+				// Move to the next class
+				classId = classId < totalClasses ? classId + 1 : 1;
+			}
+		}
+
+		await queryInterface.bulkInsert("StudentsClasses", studentsClasses, {});
+	},
+
+	async down(queryInterface, Sequelize) {
+		await queryInterface.bulkDelete("StudentsClasses", null, {});
+	},
 };

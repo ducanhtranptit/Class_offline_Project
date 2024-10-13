@@ -617,7 +617,7 @@ module.exports = {
 				}
 				await Promise.all(
 					teacherIdList.map(async (value) => {
-                        const teacherId = await value;
+						const teacherId = await value;
 						await classVal.addUser(teacherId);
 					})
 				);
@@ -786,12 +786,11 @@ module.exports = {
 								classId: id,
 							},
 						});
-
 						return await StudentsAttendance.create({
 							dateLearn: value.split(" - ")[0],
 							studentId: value.split(" - ")[1],
 							classId: id,
-							statusId: status.id,
+							statusId: status.statusId,
 							status: value.split(" - ")[2],
 						});
 					}
