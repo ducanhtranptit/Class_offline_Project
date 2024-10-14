@@ -93,6 +93,9 @@ app.use(AuthMiddleware);
 app.use(LoginFirstTimeMiddleware);
 app.use(DeviceMiddleware);
 app.use("/connect", connectRouter);
+app.get("/", (req, res) => {
+    res.redirect("/admin");
+  });  
 app.use("/admin", RoleMiddleware, adminRouter);
 
 // catch 404 and forward to error handler
