@@ -28,6 +28,6 @@ services:
             DB_NAME: class_offline
         volumes:
             - .:/app
-        command: sh -c "npm install && npm run database && npm start"
+        command: sh -c "npm install && npm start"
 volumes:
     db_data:
