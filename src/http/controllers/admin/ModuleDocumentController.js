@@ -17,7 +17,6 @@ module.exports = {
 					model: Course,
 				},
 			});
-
 			const permissionUser = await permissionUtils.roleUser(req);
 
 			res.render("admin/moduleDocument/add", {
@@ -37,6 +36,7 @@ module.exports = {
 	store: async (req, res) => {
 		try {
 			const courseId = req.flash("courseId").slice(-1);
+			console.log("courseId: ", courseId);
 			const { documentContent, pathName, moduleId } = req.body;
 
 			await ModuleDocument.create({
