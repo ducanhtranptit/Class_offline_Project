@@ -21,6 +21,6 @@ jobs:
       - name: Pull latest code on server
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "
-            cd /var/www/sites/Class_offline_Project/ &&
+            cd ${{ secrets.SOURCE_DIR }} &&
             git pull origin main
           "
