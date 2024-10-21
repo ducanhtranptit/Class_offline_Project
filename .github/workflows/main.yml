@@ -20,4 +20,7 @@ jobs:
 
       - name: Pull latest code on server
         run: |
-          ssh -o StrictHostKeyChecking=no root@14.225.36.229 "cd /var/www/sites/Class_offline_Project/ && git pull origin main"
+          ssh -o StrictHostKeyChecking=no root@14.225.36.229 "
+          cd /var/www/sites/Class_offline_Project/ && 
+          git pull origin main &&
+          "
