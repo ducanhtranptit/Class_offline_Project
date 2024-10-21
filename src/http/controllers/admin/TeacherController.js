@@ -105,7 +105,7 @@ module.exports = {
 				userName,
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -128,7 +128,7 @@ module.exports = {
 				userName,
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -155,7 +155,7 @@ module.exports = {
 			req.flash("errors", result.errors);
 			res.redirect("/admin/teachers/add");
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -189,7 +189,7 @@ module.exports = {
 				userName,
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -230,7 +230,7 @@ module.exports = {
 			req.flash("errors", result.errors);
 			res.redirect(`/admin/teachers/edit/${id}`);
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -252,7 +252,7 @@ module.exports = {
 			}
 			res.redirect("/admin/teachers");
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -270,7 +270,7 @@ module.exports = {
 			});
 			res.redirect("/admin/teachers");
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -303,7 +303,7 @@ module.exports = {
 				userName,
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -332,7 +332,7 @@ module.exports = {
 			const fileName = `user_teacher_${date}.xlsx`;
 			exportFile(res, teachers, "User_Teacher", fileName, columns);
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -352,7 +352,7 @@ module.exports = {
 				userName,
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -384,7 +384,7 @@ module.exports = {
 			}
 			res.redirect("/admin/teachers");
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},

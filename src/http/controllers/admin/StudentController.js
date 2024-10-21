@@ -106,7 +106,7 @@ module.exports = {
 				userName,
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -129,7 +129,7 @@ module.exports = {
 				userName,
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -156,7 +156,7 @@ module.exports = {
 			req.flash("errors", result.errors);
 			res.redirect("/admin/students/add");
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -187,7 +187,7 @@ module.exports = {
 				userName,
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -224,7 +224,7 @@ module.exports = {
 			req.flash("errors", result.errors);
 			res.redirect(`/admin/students/edit/${id}`);
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -238,6 +238,9 @@ module.exports = {
 				},
 			});
 			if (student) {
+				await StudentsClass.destroy({
+					where: { studentId: id },
+				});
 				await StudentsAttendance.destroy({
 					where: { studentId: id },
 				});
@@ -253,7 +256,7 @@ module.exports = {
 			}
 			res.redirect("/admin/students");
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -271,7 +274,7 @@ module.exports = {
 			});
 			res.redirect("/admin/students");
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -319,7 +322,7 @@ module.exports = {
 				userName,
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -339,7 +342,7 @@ module.exports = {
 			const fileName = `User_Student_${date}.xlsx`;
 			exportFile(res, students, "User_Student", fileName, columns);
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -359,7 +362,7 @@ module.exports = {
 				userName,
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -384,7 +387,7 @@ module.exports = {
 			}
 			res.redirect("/admin/students");
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},

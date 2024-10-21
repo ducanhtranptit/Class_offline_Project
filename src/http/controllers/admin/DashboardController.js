@@ -56,7 +56,7 @@ module.exports = {
 				userName,
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},

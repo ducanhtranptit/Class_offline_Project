@@ -105,7 +105,7 @@ module.exports = {
 				userName,
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -128,7 +128,7 @@ module.exports = {
 				userName,
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -164,7 +164,7 @@ module.exports = {
 			req.flash("errors", result.errors);
 			res.redirect("/admin/users/add");
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -195,7 +195,7 @@ module.exports = {
 				userName,
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -233,7 +233,7 @@ module.exports = {
 			req.flash("errors", result.errors);
 			res.redirect(`/admin/users/edit/${id}`);
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -255,7 +255,7 @@ module.exports = {
 			}
 			res.redirect("/admin/users");
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -273,7 +273,7 @@ module.exports = {
 			});
 			res.redirect("/admin/users");
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -293,7 +293,7 @@ module.exports = {
 			const fileName = `user_admin_${date}.xlsx`;
 			exportFile(res, user, "User_Admin", fileName, columns);
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -313,7 +313,7 @@ module.exports = {
 				userName,
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -338,7 +338,7 @@ module.exports = {
 			}
 			res.redirect("/admin/users");
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -377,7 +377,7 @@ module.exports = {
 				userName,
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -418,7 +418,7 @@ module.exports = {
 
 			return res.redirect("/admin/users");
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -446,7 +446,7 @@ module.exports = {
 				userName,
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -497,7 +497,7 @@ module.exports = {
 
 			res.redirect(`/admin/users/permissions/add/${id}`);
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},

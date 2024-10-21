@@ -27,7 +27,7 @@ module.exports = {
 				userName,
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -41,7 +41,7 @@ module.exports = {
 			});
 			res.redirect(`/admin/courses/detail/${courseId}`);
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -74,7 +74,7 @@ module.exports = {
 				userName,
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -96,7 +96,7 @@ module.exports = {
 			);
 			res.redirect(`/admin/course-modules/edit/${id}`);
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -113,7 +113,7 @@ module.exports = {
 			});
 			res.redirect(`/admin/courses/detail/${courseId}`);
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},

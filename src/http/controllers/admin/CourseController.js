@@ -86,7 +86,7 @@ module.exports = {
 				userName,
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -119,7 +119,7 @@ module.exports = {
 				userName,
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -152,7 +152,7 @@ module.exports = {
 			req.flash("errors", result.errors);
 			res.redirect("/admin/courses/add");
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -198,7 +198,7 @@ module.exports = {
 				userName,
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -238,7 +238,7 @@ module.exports = {
 			req.flash("errors", result.errors);
 			res.redirect(`/admin/courses/edit/${id}`);
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -261,7 +261,7 @@ module.exports = {
 			}
 			res.redirect("/admin/courses");
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -280,7 +280,7 @@ module.exports = {
 			});
 			res.redirect("/admin/courses");
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -338,7 +338,7 @@ module.exports = {
 				userName,
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -358,7 +358,7 @@ module.exports = {
 			const fileName = `course_${date}.xlsx`;
 			exportFile(res, courses, "Course", fileName, columns);
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -378,7 +378,7 @@ module.exports = {
 				userName,
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -406,7 +406,7 @@ module.exports = {
 			}
 			res.redirect("/admin/courses");
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},

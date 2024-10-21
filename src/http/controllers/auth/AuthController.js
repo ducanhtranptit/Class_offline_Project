@@ -76,7 +76,7 @@ module.exports = {
 			req.flash("email", email);
 			res.redirect("/auth/verification");
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -96,7 +96,7 @@ module.exports = {
 				message,
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -135,7 +135,7 @@ module.exports = {
 			req.flash("message", "Mã OTP không chính xác");
 			res.redirect("/auth/verification");
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -165,7 +165,7 @@ module.exports = {
 				layout: "layouts/auth.layout.ejs",
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -193,7 +193,7 @@ module.exports = {
 				res.redirect("/auth/reset");
 			}
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -228,7 +228,7 @@ module.exports = {
 			req.flash("email", email);
 			res.redirect("/auth/verification");
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -239,7 +239,7 @@ module.exports = {
 				layout: "layouts/auth.layout.ejs",
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -267,7 +267,7 @@ module.exports = {
 				}
 			}
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},

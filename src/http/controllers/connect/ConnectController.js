@@ -19,7 +19,7 @@ module.exports = {
 				return res.redirect("/profile");
 			}
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -40,7 +40,7 @@ module.exports = {
 				res.redirect("/profile");
 			}
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -70,7 +70,7 @@ module.exports = {
 				res.redirect("/profile");
 			}
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -100,7 +100,7 @@ module.exports = {
 				return res.redirect("/profile");
 			}
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
@@ -130,7 +130,7 @@ module.exports = {
 				return res.redirect("/profile");
 			}
 		} catch (error) {
-			console.log(error.message);
+			console.log(error);
 			res.render("/error/500");
 		}
 	},
