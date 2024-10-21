@@ -244,10 +244,17 @@ module.exports = {
 				},
 			});
 			if (teacher) {
+				await Classes_Teacher.destroy({
+					where: { teacherId: id },
+				});
+				await TeacherCalendar.destroy({
+					where: { teacherId: id },
+				});
+				await Course.destroy({
+					where: { teacherId: id },
+				});
 				await User.destroy({
-					where: {
-						id: id,
-					},
+					where: { id: id },
 				});
 			}
 			res.redirect("/admin/teachers");
@@ -261,6 +268,27 @@ module.exports = {
 		try {
 			const { listTeacherDelete } = req.body;
 			const listIdTeacher = listTeacherDelete.split(",");
+			await Classes_Teacher.destroy({
+				where: {
+					teacherId: {
+						[Op.in]: listIdStudent,
+					},
+				},
+			});
+			await TeacherCalendar.destroy({
+				where: {
+					teacherId: {
+						[Op.in]: listIdStudent,
+					},
+				},
+			});
+			await Course.destroy({
+				where: {
+					teacherId: {
+						[Op.in]: listIdStudent,
+					},
+				},
+			});
 			await User.destroy({
 				where: {
 					id: {

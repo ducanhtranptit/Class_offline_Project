@@ -247,10 +247,20 @@ module.exports = {
 				},
 			});
 			if (user) {
+				await UserOtp.destroy({
+					where: { userId: id },
+				});
+				await UserSocial.destroy({
+					where: { userId: id },
+				});
+				await LoginToken.destroy({
+					where: { userId: id },
+				});
+				await UserColumn.destroy({
+					where: { userId: id },
+				});
 				await User.destroy({
-					where: {
-						id: id,
-					},
+					where: { id: id },
 				});
 			}
 			res.redirect("/admin/users");
@@ -264,6 +274,34 @@ module.exports = {
 		try {
 			const { listUserDelete } = req.body;
 			const listIdUser = listUserDelete.split(",");
+			await UserOtp.destroy({
+				where: {
+					userId: {
+						[Op.in]: listIdStudent,
+					},
+				},
+			});
+			await UserSocial.destroy({
+				where: {
+					userId: {
+						[Op.in]: listIdStudent,
+					},
+				},
+			});
+			await LoginToken.destroy({
+				where: {
+					userId: {
+						[Op.in]: listIdStudent,
+					},
+				},
+			});
+			await UserColumn.destroy({
+				where: {
+					userId: {
+						[Op.in]: listIdStudent,
+					},
+				},
+			});
 			await User.destroy({
 				where: {
 					id: {

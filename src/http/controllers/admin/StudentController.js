@@ -265,6 +265,34 @@ module.exports = {
 		try {
 			const { listStudentDelete } = req.body;
 			const listIdStudent = listStudentDelete.split(",");
+			await StudentsClass.destroy({
+				where: {
+					studentId: {
+						[Op.in]: listIdStudent,
+					},
+				},
+			});
+			await StudentsAttendance.destroy({
+				where: {
+					studentId: {
+						[Op.in]: listIdStudent,
+					},
+				},
+			});
+			await ExercisesSubmit.destroy({
+				where: {
+					studentId: {
+						[Op.in]: listIdStudent,
+					},
+				},
+			});
+			await Comment.destroy({
+				where: {
+					studentId: {
+						[Op.in]: listIdStudent,
+					},
+				},
+			});
 			await User.destroy({
 				where: {
 					id: {
