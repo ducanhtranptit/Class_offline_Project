@@ -23,7 +23,7 @@ const moduleName = "Người dùng";
 module.exports = {
 	index: async (req, res) => {
 		try {
-			const title = "Danh sách người dùng";
+			const title = "Danh sách người dùng mới nè";
 			const userName = req.user.name;
 			const filters = {};
 
