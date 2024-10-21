@@ -13,8 +13,8 @@ const { getPaginateUrl } = require("../../../utils/url");
 const permissionUtils = require("../../../utils/permissionUtils");
 const validate = require("../../../utils/validate");
 const model = require("../../../models/index");
+const { sequelize } = require('../../../models');
 const User = model.User;
-const User_Role = model.User_Role;
 const UserOtp = model.UserOtp;
 const UserSocial = model.UserSocial;
 const LoginToken = model.LoginToken;
@@ -252,9 +252,13 @@ module.exports = {
 				},
 			});
 			if (user) {
-				await User_Role.destroy({
-					where: { userId: id },
-				});
+				await sequelize.query(
+					`DELETE FROM User_Role WHERE userId = :userId`,
+					{
+						replacements: { userId: id },
+						type: sequelize.QueryTypes.DELETE,
+					}
+				);
 				await UserOtp.destroy({
 					where: { userId: id },
 				});
