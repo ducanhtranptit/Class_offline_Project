@@ -235,10 +235,17 @@ module.exports = {
 				},
 			});
 			if (student) {
+				await StudentsAttendance.destroy({
+					where: { studentId: id },
+				});
+				await ExercisesSubmit.destroy({
+					where: { studentId: id },
+				});
+				await Comment.destroy({
+					where: { studentId: id },
+				});
 				await User.destroy({
-					where: {
-						id: id,
-					},
+					where: { id: id },
 				});
 			}
 			res.redirect("/admin/students");
