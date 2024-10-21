@@ -10,7 +10,10 @@ const validate = require("../../../utils/validate");
 const permissionUtils = require("../../../utils/permissionUtils");
 
 const model = require("../../../models/index");
+const { sequelize } = require('../../../models');
 const User = model.User;
+const TeacherCalendar = model.TeacherCalendar;
+const Course = model.Course;
 const Type = model.Type;
 
 const moduleName = "Giảng viên";
@@ -238,21 +241,33 @@ module.exports = {
 	destroy: async (req, res) => {
 		try {
 			const { id } = req.params;
+			console.log("teacherId:", id);
+
 			const teacher = await User.findOne({
 				where: {
 					id: id,
 				},
 			});
 			if (teacher) {
-				await Classes_Teacher.destroy({
-					where: { teacherId: id },
-				});
+				await sequelize.query(
+					`DELETE FROM Classes_Teachers WHERE teacherId = :teacherId`,
+					{
+						replacements: { teacherId: id },
+						type: sequelize.QueryTypes.DELETE,
+					}
+				);
 				await TeacherCalendar.destroy({
 					where: { teacherId: id },
 				});
-				await Course.destroy({
-					where: { teacherId: id },
-				});
+				await Course.update(
+					{ teacherId: null },
+					{
+						where: {
+							teacherId: id,
+						},
+					}
+				);
+
 				await User.destroy({
 					where: { id: id },
 				});
@@ -268,13 +283,6 @@ module.exports = {
 		try {
 			const { listTeacherDelete } = req.body;
 			const listIdTeacher = listTeacherDelete.split(",");
-			await Classes_Teacher.destroy({
-				where: {
-					teacherId: {
-						[Op.in]: listIdStudent,
-					},
-				},
-			});
 			await TeacherCalendar.destroy({
 				where: {
 					teacherId: {

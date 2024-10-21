@@ -14,6 +14,10 @@ const permissionUtils = require("../../../utils/permissionUtils");
 const validate = require("../../../utils/validate");
 const model = require("../../../models/index");
 const User = model.User;
+const UserOtp = model.UserOtp;
+const UserSocial = model.UserSocial;
+const LoginToken = model.LoginToken;
+const UserColumn = model.UserColumn;
 const Type = model.Type;
 const Role = model.Role;
 const Permission = model.Permission;
@@ -256,9 +260,9 @@ module.exports = {
 				await LoginToken.destroy({
 					where: { userId: id },
 				});
-				await UserColumn.destroy({
-					where: { userId: id },
-				});
+				// await UserColumn.destroy({
+				// 	where: { userId: id },
+				// });
 				await User.destroy({
 					where: { id: id },
 				});
