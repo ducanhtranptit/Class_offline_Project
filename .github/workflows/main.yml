@@ -22,5 +22,5 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no root@14.225.36.229 "
           cd /var/www/sites/Class_offline_Project/ && 
-          git pull origin main &&
+          git pull origin main
           "
