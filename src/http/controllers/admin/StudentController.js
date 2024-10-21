@@ -15,6 +15,9 @@ const Type = model.Type;
 const StudentsClass = model.StudentsClass;
 const Class = model.Class;
 const Course = model.Course;
+const StudentsAttendance = model.StudentsAttendance;
+const ExercisesSubmit = model.ExercisesSubmit;
+const Comment = model.Comment;
 
 const moduleName = "Học viên";
 
