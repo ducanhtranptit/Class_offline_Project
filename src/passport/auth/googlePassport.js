@@ -34,15 +34,7 @@ module.exports = new GoogleStrategy(
 		const user = await User.findOne({
 			where: {
 				id: providerDetail.userId,
-			},
-			attributes: [
-				"name",
-				"email",
-				"phone",
-				"address",
-				"typeId",
-				"firstLogin",
-			],
+			}
 		});
 		return done(null, user);
 	}
