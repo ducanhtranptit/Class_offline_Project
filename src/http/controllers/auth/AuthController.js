@@ -82,6 +82,7 @@ module.exports = {
 	},
 
 	loginGoogle: (req, res) => {
+		console.log(req.user);
 		res.redirect("/admin");
 	},
 
