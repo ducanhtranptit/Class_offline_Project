@@ -26,7 +26,6 @@ module.exports = () => {
         }),
         body("tryLearn", "Học thử không được để trống").notEmpty(),
         body("coursePrice", "Học phí không được để trống").notEmpty(),
-        body("teacherId", "Vui lòng chọn giảng viên").notEmpty(),
         body("courseDuration", "Thời gian không được để trống").notEmpty(),
     ];
 };

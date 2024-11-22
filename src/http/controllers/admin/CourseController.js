@@ -135,7 +135,11 @@ module.exports = {
 				courseDuration,
 			} = req.body;
 
+			console.log("9999999");
+			
+
 			const result = validationResult(req);
+			console.log('result: ', result);				
 			if (result.isEmpty()) {
 				await Course.create({
 					name: courseName,

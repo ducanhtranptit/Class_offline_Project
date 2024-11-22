@@ -33,7 +33,6 @@
 				<th style="width: 10px">#</th>
 				<th>Tên</th>
 				<th>Học phí</th>
-				<th>Giảng viên</th>
 				<th>Học thử</th>
 				<th>Thời gian</th>
 				<% if(permissionUtils.getPermissionUser(permissionUser, 'courses.update') || permissionUtils.getPermissionUser(permissionUser, 'courses.delete')) {%>
@@ -50,7 +49,6 @@
 				<td><%= index + 1 %></td>
 				<td><a href="/admin/courses/detail/<%= course.id %>"><%= course.name %></a></td>
 				<td><%= course.price.toLocaleString() %> đ</td>
-				<td><a href="/admin/teachers/detail/<%= course.User.id %>"><%= course.User.name %></a></td>
 				<td><%= course.tryLearn ?? "0" %> buổi</td>
 				<td><%= course.duration %> buổi </td>
 				<% if(permissionUtils.getPermissionUser(permissionUser, 'courses.update')) {%>
