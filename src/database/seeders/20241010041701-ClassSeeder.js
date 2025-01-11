@@ -9,8 +9,8 @@ module.exports = {
 				{
 					name: "Kỹ thuật siêu cao tần - D20",
 					quantity: 29,
-					startDate: "2024-02-01 07:00:00",
-					endDate: "2024-08-22 07:00:00",
+					startDate: "2025-02-01 07:00:00",
+					endDate: "2025-08-22 07:00:00",
 					courseId: 1,
 					createdAt: new Date(),
 					updatedAt: new Date(),
@@ -18,8 +18,8 @@ module.exports = {
 				{
 					name: "Điện toán đám mây - D20",
 					quantity: 48,
-					startDate: "2024-02-01 07:00:00",
-					endDate: "2024-08-22 07:00:00",
+					startDate: "2025-02-01 07:00:00",
+					endDate: "2025-08-22 07:00:00",
 					courseId: 2,
 					createdAt: new Date(),
 					updatedAt: new Date(),
@@ -27,8 +27,8 @@ module.exports = {
 				{
 					name: "Lập trình hướng đối tượng - D20",
 					quantity: 30,
-					startDate: "2024-02-01 07:00:00",
-					endDate: "2024-08-22 07:00:00",
+					startDate: "2025-02-01 07:00:00",
+					endDate: "2025-08-22 07:00:00",
 					courseId: 3,
 					createdAt: new Date(),
 					updatedAt: new Date(),
@@ -36,9 +36,8 @@ module.exports = {
 				{
 					name: "Kỹ thuật lập trình - D20",
 					quantity: 35,
-					startDate: "2024-02-01 07:00:00",
-					endDate: "2024-08-22 07:00:00",
-
+					startDate: "2025-02-01 07:00:00",
+					endDate: "2025-08-22 07:00:00",
 					courseId: 4,
 					createdAt: new Date(),
 					updatedAt: new Date(),
@@ -46,8 +45,8 @@ module.exports = {
 				{
 					name: "Kiến trúc máy tính - D20",
 					quantity: 40,
-					startDate: "2024-02-01 07:00:00",
-					endDate: "2024-08-22 07:00:00",
+					startDate: "2025-02-01 07:00:00",
+					endDate: "2025-08-22 07:00:00",
 					courseId: 5,
 					createdAt: new Date(),
 					updatedAt: new Date(),
@@ -55,8 +54,8 @@ module.exports = {
 				{
 					name: "Tín hiệu và Hệ thống - D20",
 					quantity: 45,
-					startDate: "2024-02-01 07:00:00",
-					endDate: "2024-08-22 07:00:00",
+					startDate: "2025-02-01 07:00:00",
+					endDate: "2025-08-22 07:00:00",
 					courseId: 6,
 					createdAt: new Date(),
 					updatedAt: new Date(),
@@ -64,8 +63,8 @@ module.exports = {
 				{
 					name: "Linh kiện và mạch điện tử - D20",
 					quantity: 50,
-					startDate: "2024-02-01 07:00:00",
-					endDate: "2024-08-22 07:00:00",
+					startDate: "2025-02-01 07:00:00",
+					endDate: "2025-08-22 07:00:00",
 					courseId: 7,
 					createdAt: new Date(),
 					updatedAt: new Date(),
@@ -73,8 +72,8 @@ module.exports = {
 				{
 					name: "Lý thuyết truyền tin - D20",
 					quantity: 55,
-					startDate: "2024-02-01 07:00:00",
-					endDate: "2024-08-22 07:00:00",
+					startDate: "2025-02-01 07:00:00",
+					endDate: "2025-08-22 07:00:00",
 					courseId: 8,
 					createdAt: new Date(),
 					updatedAt: new Date(),
